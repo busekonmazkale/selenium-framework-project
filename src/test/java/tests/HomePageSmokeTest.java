@@ -1,6 +1,8 @@
 package tests;
 
 import base.BaseTest;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -26,6 +28,10 @@ public class HomePageSmokeTest extends BaseTest {
 
     @Test
     public void homePageProductsShouldBeVisible() {
+        test = extent.createTest("Login Başarılı Testi"); // Artık doğrudan 'test'i kullanabilirsin
+        test.info("Giriş yapılıyor...");
+
+
         logger.info("Ana sayfa ürün görünürlük testi başladı.");
 
         List<WebElement> products = driver.findElements(By.cssSelector(".four.columns"));
@@ -35,5 +41,6 @@ public class HomePageSmokeTest extends BaseTest {
         Assert.assertTrue(!products.isEmpty(), "Ana sayfada ürün bulunamadı.");
 
         logger.info("Ana sayfada en az 1 ürün listelendi.");
+        test.pass("Ürünler başarıyla görüntülendi."); // Testin "PASS" olmasını sağlar
     }
 }
