@@ -14,7 +14,7 @@ import utils.ConfigReader;
 import utils.ExtentManager;
 
 public class BaseTest {
-    protected ExtentReports extent;
+    protected static ExtentReports extent;
     protected ExtentTest test;
 
     public static WebDriver driver;
