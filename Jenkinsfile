@@ -8,11 +8,10 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'mvn clean test'
+                sh "mvn test -Dgroups=${params.TEST_GROUP}"
             }
         }
     }
-
 
     post {
         always {

@@ -1,8 +1,6 @@
-package tests;
+package tests.smoke;
 
 import base.BaseTest;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -11,8 +9,8 @@ import utils.ConfigReader;
 
 import java.util.List;
 
-public class HomePageSmokeTest extends BaseTest {
-    @Test
+public class HomePageTest extends BaseTest {
+    @Test(groups = {"smoke"})
     public void homePageShouldOpen() {
         String expectedTitle = ConfigReader.getProperty("title");
         String actualTitle = driver.getTitle();
@@ -26,7 +24,7 @@ public class HomePageSmokeTest extends BaseTest {
         logger.info("Home page smoke test çalıştı.");
     }
 
-    @Test
+    @Test(groups = {"smoke"})
     public void homePageProductsShouldBeVisible() {
         test = extent.createTest("Login Başarılı Testi"); // Artık doğrudan 'test'i kullanabilirsin
         test.info("Giriş yapılıyor...");

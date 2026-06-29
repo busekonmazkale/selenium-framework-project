@@ -6,9 +6,9 @@
         <listener class-name="listeners.TestListener"/>
     </listeners>
 
-    <test name="Tüm Testler">
-        <classes>
-            <class name="tests.HomePageSmokeTest"/>
-        </classes>
+    <test name="Smoke Test">
+        <packages>
+            <package name="tests.smoke"/>
+        </packages>
     </test>
 </suite>
