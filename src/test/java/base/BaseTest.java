@@ -20,6 +20,7 @@ public class BaseTest {
     public static WebDriver driver;
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
+
     @BeforeSuite
     public void setupSuite() {
         java.util.Locale.setDefault(java.util.Locale.US);
@@ -37,13 +38,14 @@ public class BaseTest {
 
     }
 
-    @AfterMethod
+    /*@AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
             logger.info("Tarayıcı kapatıldı.");
         }
-    }
+    }*/
+    
 
     @AfterSuite
     public void tearDownSuite() {
