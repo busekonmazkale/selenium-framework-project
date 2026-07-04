@@ -14,9 +14,9 @@ public class SignupPositiveTest extends BaseTest {
 
         signupPage.enterFirstName(TestDataFactory.generateFirstName());
         signupPage.enterLastName(TestDataFactory.generateLastName());
-        signupPage.enterEmail("busekonmaz@outlook.com");
+        signupPage.enterEmail(TestDataFactory.generateEmail());
         signupPage.enterPassword(TestDataFactory.generatePassword());
-        System.out.println("ŞİFRE: " + TestDataFactory.generatePassword());
+
         Thread.sleep(3000);
         signupPage.clickSignupButton();
         Thread.sleep(3000);

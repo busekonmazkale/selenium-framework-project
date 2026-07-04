@@ -15,6 +15,9 @@ public class TestDataFactory {
         return faker.name().lastName();
     }
     public static String generatePassword(){
-        return faker.text().text(Text.TextSymbolsBuilder.builder().with(DIGITS, 5).build());
+        return faker.text().text(Text.TextSymbolsBuilder.builder().len(5).with(DIGITS, 5).build());
+    }
+    public static String generateEmail(){
+        return faker.internet().emailAddress();
     }
 }
