@@ -5,6 +5,10 @@ pipeline {
             maven 'Maven'
         }
 
+    parameters {
+            choice(name: 'TEST_GROUP', choices: ['smoke', 'auth'], description: 'Select the test group to execute')
+        }
+
     stages {
         stage('Test') {
             steps {
