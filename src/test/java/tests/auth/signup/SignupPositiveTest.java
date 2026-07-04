@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pages.auth.SignupPage;
 
 public class SignupPositiveTest extends BaseTest {
-    @Test
+    @Test(groups = {"auth"})
     public void userShouldSignup() throws InterruptedException {
         SignupPage signupPage = new SignupPage(driver);
         driver.get("https://sauce-demo.myshopify.com/account/register");
