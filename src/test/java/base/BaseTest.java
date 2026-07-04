@@ -27,7 +27,7 @@ public class BaseTest {
         extent = ExtentManager.getInstance();
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         String url = ConfigReader.getProperty("base.url");
         logger.info("Config dosyasından URL alındı: {}", url);
