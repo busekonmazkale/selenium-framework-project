@@ -4,6 +4,7 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.auth.SignupPage;
+import utils.TestDataFactory;
 
 public class SignupPositiveTest extends BaseTest {
     @Test(groups = {"auth"})
@@ -11,10 +12,11 @@ public class SignupPositiveTest extends BaseTest {
         SignupPage signupPage = new SignupPage(driver);
         driver.get("https://sauce-demo.myshopify.com/account/register");
 
-        signupPage.enterFirstName("Buse");
-        signupPage.enterLastName("Kale");
+        signupPage.enterFirstName(TestDataFactory.generateFirstName());
+        signupPage.enterLastName(TestDataFactory.generateLastName());
         signupPage.enterEmail("busekonmaz@outlook.com");
-        signupPage.enterPassword("Password123.");
+        signupPage.enterPassword(TestDataFactory.generatePassword());
+        System.out.println("ŞİFRE: " + TestDataFactory.generatePassword());
         Thread.sleep(3000);
         signupPage.clickSignupButton();
         Thread.sleep(3000);
