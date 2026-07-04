@@ -21,7 +21,7 @@ public class BaseTest {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void setupSuite() {
         java.util.Locale.setDefault(java.util.Locale.US);
         extent = ExtentManager.getInstance();
