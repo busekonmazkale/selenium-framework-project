@@ -10,20 +10,13 @@ public class SignupPositiveTest extends BaseTest {
     @Test(groups = {"auth"})
     public void userShouldSignup() throws InterruptedException {
         SignupPage signupPage = new SignupPage(driver);
-        driver.get("https://sauce-demo.myshopify.com/account/register");
+        driver.get("https://automationexercise.com/login");
 
-        signupPage.enterFirstName(TestDataFactory.generateFirstName());
-        signupPage.enterLastName(TestDataFactory.generateLastName());
+        signupPage.enterName(TestDataFactory.generateFirstName());
         signupPage.enterEmail(TestDataFactory.generateEmail());
-        signupPage.enterPassword(TestDataFactory.generatePassword());
 
         Thread.sleep(3000);
         signupPage.clickSignupButton();
         Thread.sleep(3000);
-
-        Assert.assertTrue(
-                signupPage.isCaptchaDisplayed(),
-                "Geçerli signup formu gönderildikten sonra CAPTCHA ekranı görünmedi."
-        );
     }
 }

@@ -13,7 +13,7 @@ public class MenuTest extends BaseTest {
     @Test
     public void MenuItemsTest() {
 
-        List<WebElement> menuItems = driver.findElements(By.cssSelector("#main-menu li"));
+        List<WebElement> menuItems = driver.findElements(By.cssSelector(".nav navbar-nav li"));
 
         for (WebElement menuItem : menuItems) {
             WebElement link = menuItem.findElement(By.tagName("a"));

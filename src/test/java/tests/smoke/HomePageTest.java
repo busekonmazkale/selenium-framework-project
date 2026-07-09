@@ -28,11 +28,9 @@ public class HomePageTest extends BaseTest {
     public void homePageProductsShouldBeVisible() {
         test = extent.createTest("Login Başarılı Testi"); // Artık doğrudan 'test'i kullanabilirsin
         test.info("Giriş yapılıyor...");
-
-
         logger.info("Ana sayfa ürün görünürlük testi başladı.");
 
-        List<WebElement> products = driver.findElements(By.cssSelector(".four.columns"));
+        List<WebElement> products = driver.findElements(By.cssSelector(".product-image-wrapper"));
 
         logger.info("Ana sayfada bulunan ürün sayısı: {}", products.size());
 
