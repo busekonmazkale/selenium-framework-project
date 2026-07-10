@@ -22,15 +22,15 @@ public class MenuTest extends BaseTest {
             String href = link.getAttribute("href");
 
 
-            Assert.assertNotNull(href, menuText + " menüsünün href değeri null geldi.");
-            Assert.assertFalse(href.trim().isEmpty(), menuText + " menüsünün href değeri boş geldi.");
+            Assert.assertNotNull(href, menuText + " The menu does not have an href attribute.");
+            Assert.assertFalse(href.trim().isEmpty(), menuText + " Menu href value is empty.");
 
             int statusCode = LinkUtility.getStatusCode(href);
 
             Assert.assertEquals(
                     statusCode,
                     200,
-                    menuText + " menüsü 200 dönmedi. URL: " + href + " Status Code: " + statusCode
+                    menuText + " Menu returned non-200 status code. URL: " + href + " Status Code: " + statusCode
             );
 
         }

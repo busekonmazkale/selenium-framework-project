@@ -26,8 +26,10 @@ public class HomePageTest extends BaseTest {
 
     @Test(groups = {"smoke"})
     public void homePageProductsShouldBeVisible() {
+        // Initialize the test case for the Extent Report
         test = extent.createTest("Homepage Load Test");
         test.info("Loading the homepage...");
+
         logger.info("Product visibility test on the homepage has started.");
 
         List<WebElement> products = driver.findElements(By.cssSelector(".product-image-wrapper"));

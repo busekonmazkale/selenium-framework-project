@@ -14,6 +14,9 @@ public class SignupPositiveTest extends BaseTest {
     private static final String SUCCESS_PAGE_URL = "/signup";
     @Test(groups = {"auth"})
     public void userShouldSignup() throws InterruptedException {
+        // Initialize the test case for the Extent Report
+        test = extent.createTest("User Signup - Successful Registration");
+
         SignupPage signupPage = new SignupPage(driver);
         driver.get("https://automationexercise.com/login");
 
@@ -26,7 +29,8 @@ public class SignupPositiveTest extends BaseTest {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         boolean isRedirected = wait.until(ExpectedConditions.urlContains(SUCCESS_PAGE_URL));
-        Assert.assertTrue(isRedirected, "Kayıt sonrası /signup sayfasına yönlendirme gerçekleşmedi!");
-        logger.info("Başarılı şekilde kayıt olundu");
+        Assert.assertTrue(isRedirected, "Registration failed to redirect to the /signup page.");
+        logger.info("Registration completed successfully.");
+        test.pass("Registration successful.");
     }
 }
