@@ -15,28 +15,28 @@ public class HomePageTest extends BaseTest {
         String expectedTitle = ConfigReader.getProperty("title");
         String actualTitle = driver.getTitle();
 
-        logger.info("Beklenen title: {}", expectedTitle);
-        logger.info("Gerçek title: {}", actualTitle);
+        logger.info("Expected title: {}", expectedTitle);
+        logger.info("Actual title: {}", actualTitle);
 
-        Assert.assertEquals(actualTitle, expectedTitle, "Sayfa title beklenen gibi değil."
+        Assert.assertEquals(actualTitle, expectedTitle, "Page title is not as expected."
         );
 
-        logger.info("Home page smoke test çalıştı.");
+        logger.info("Home page smoke tests passed.");
     }
 
     @Test(groups = {"smoke"})
     public void homePageProductsShouldBeVisible() {
-        test = extent.createTest("Login Başarılı Testi"); // Artık doğrudan 'test'i kullanabilirsin
-        test.info("Giriş yapılıyor...");
-        logger.info("Ana sayfa ürün görünürlük testi başladı.");
+        test = extent.createTest("Homepage Load Test");
+        test.info("Loading the homepage...");
+        logger.info("Product visibility test on the homepage has started.");
 
         List<WebElement> products = driver.findElements(By.cssSelector(".product-image-wrapper"));
 
-        logger.info("Ana sayfada bulunan ürün sayısı: {}", products.size());
+        logger.info("Product count on the homepage: {}", products.size());
 
-        Assert.assertTrue(!products.isEmpty(), "Ana sayfada ürün bulunamadı.");
+        Assert.assertTrue(!products.isEmpty(), "No products found on the homepage!");
 
-        logger.info("Ana sayfada en az 1 ürün listelendi.");
-        test.pass("Ürünler başarıyla görüntülendi."); // Testin "PASS" olmasını sağlar
+        logger.info("At least one product is displayed on the homepage.");
+        test.pass("Homepage products verified successfully.");
     }
 }

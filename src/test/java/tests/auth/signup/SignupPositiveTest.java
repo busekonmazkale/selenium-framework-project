@@ -1,12 +1,17 @@
 package tests.auth.signup;
 
 import base.BaseTest;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.auth.SignupPage;
 import utils.TestDataFactory;
 
+import java.time.Duration;
+
 public class SignupPositiveTest extends BaseTest {
+    private static final String SUCCESS_PAGE_URL = "/signup";
     @Test(groups = {"auth"})
     public void userShouldSignup() throws InterruptedException {
         SignupPage signupPage = new SignupPage(driver);
@@ -18,5 +23,10 @@ public class SignupPositiveTest extends BaseTest {
         Thread.sleep(3000);
         signupPage.clickSignupButton();
         Thread.sleep(3000);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        boolean isRedirected = wait.until(ExpectedConditions.urlContains(SUCCESS_PAGE_URL));
+        Assert.assertTrue(isRedirected, "Kayıt sonrası /signup sayfasına yönlendirme gerçekleşmedi!");
+        logger.info("Başarılı şekilde kayıt olundu");
     }
 }
