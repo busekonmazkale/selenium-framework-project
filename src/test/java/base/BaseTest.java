@@ -41,7 +41,7 @@ public class BaseTest {
         logger.info("Config dosyasından URL alındı: {}", url);
         driver.manage().window().maximize();
         driver.get(url);
-        logger.info("URL açıldı: {}", url);
+        logger.info("URL opened: {}", url);
 
     }
 
@@ -49,7 +49,7 @@ public class BaseTest {
     public void tearDown() {
         if (driver != null) {
             driver.quit();
-            logger.info("Tarayıcı kapatıldı.");
+            logger.info("Browser closed.");
         }
     }
     

@@ -12,9 +12,11 @@ import java.util.List;
 public class MenuTest extends BaseTest {
     @Test
     public void MenuItemsTest() {
+        // Initialize the test case for the Extent Report
+        test = extent.createTest("Homepage Menu Test");
+        test.info("Checking the homepage menu structure...");
 
         List<WebElement> menuItems = driver.findElements(By.cssSelector(".nav navbar-nav li"));
-
         for (WebElement menuItem : menuItems) {
             WebElement link = menuItem.findElement(By.tagName("a"));
 
@@ -32,8 +34,8 @@ public class MenuTest extends BaseTest {
                     200,
                     menuText + " Menu returned non-200 status code. URL: " + href + " Status Code: " + statusCode
             );
-
         }
-    }
 
+        test.pass("Homepage menu structure validation passed successfully.");
+    }
 }

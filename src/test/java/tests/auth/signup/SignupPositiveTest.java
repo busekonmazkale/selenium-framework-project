@@ -16,21 +16,24 @@ public class SignupPositiveTest extends BaseTest {
     public void userShouldSignup() throws InterruptedException {
         // Initialize the test case for the Extent Report
         test = extent.createTest("User Signup - Successful Registration");
+        test.info("Starting the signup process.");
+
+        logger.info("Registration started.");
 
         SignupPage signupPage = new SignupPage(driver);
         driver.get("https://automationexercise.com/login");
 
         signupPage.enterName(TestDataFactory.generateFirstName());
         signupPage.enterEmail(TestDataFactory.generateEmail());
-
-        Thread.sleep(3000);
         signupPage.clickSignupButton();
-        Thread.sleep(3000);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         boolean isRedirected = wait.until(ExpectedConditions.urlContains(SUCCESS_PAGE_URL));
+
         Assert.assertTrue(isRedirected, "Registration failed to redirect to the /signup page.");
+
         logger.info("Registration completed successfully.");
-        test.pass("Registration successful.");
+
+        test.pass("Signup successful.");
     }
 }
