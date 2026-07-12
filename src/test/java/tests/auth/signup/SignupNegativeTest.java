@@ -12,12 +12,13 @@ public class SignupNegativeTest extends BaseTest {
             dataProvider = "invalidSignupData",
             dataProviderClass = InvalidSignupData.class
     )
+
     public void userShouldNotSignup(String scenarioName, String name, String email, InvalidSignupData.InvalidField invalidField) throws InterruptedException {
         SignupPage signupPage = new SignupPage(driver);
-        // Initialize the test case for the Extent Report
-        test = extent.createTest("User Signup - Negative Signup Process");
-        test.info("Starting negative the signup process.");
 
+        // Initialize the test case for the Extent Report
+        test = extent.createTest("Negative Signup Test");
+        test.info("Starting negative the signup process.");
         logger.info("Negative registration started.");
 
         driver.get("https://automationexercise.com/login");

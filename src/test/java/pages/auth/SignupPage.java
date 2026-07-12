@@ -27,8 +27,9 @@ public class SignupPage {
     public void enterEmail(String email) {
         driver.findElement(emailInput).sendKeys(email);
     }
-    public void clickSignupButton(){
+    public SignupDetailsPage clickSignupButton(){
         driver.findElement(signupButton).click();
+        return new SignupDetailsPage(driver);
     }
 
     public String getNameValidationMessage() {
