@@ -30,4 +30,11 @@ public class SignupPage {
     public void clickSignupButton(){
         driver.findElement(signupButton).click();
     }
+
+    public String getNameValidationMessage() {
+        return driver.findElement(nameInput).getDomProperty("validationMessage");
+    }
+    public String getEmailValidationMessage() {
+        return driver.findElement(emailInput).getDomProperty("validationMessage");
+    }
 }

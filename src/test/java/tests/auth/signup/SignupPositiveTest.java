@@ -15,7 +15,7 @@ public class SignupPositiveTest extends BaseTest {
     @Test(groups = {"auth"})
     public void userShouldSignup() throws InterruptedException {
         // Initialize the test case for the Extent Report
-        test = extent.createTest("User Signup - Successful Registration");
+        test = extent.createTest("User Signup - Successful Signup Process");
         test.info("Starting the signup process.");
 
         logger.info("Registration started.");
