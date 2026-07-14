@@ -12,18 +12,22 @@ import java.util.List;
 public class MenuTest extends BaseTest {
     @Test
     public void MenuItemsTest() {
-        // Initialize the test case for the Extent Report
         test = extent.createTest("Homepage Menu Test");
-        test.info("Checking the homepage menu structure...");
+        test.info("Checking the homepage menu structure");
 
-        List<WebElement> menuItems = driver.findElements(By.cssSelector(".nav navbar-nav li"));
+        // Arrange
+        List<WebElement> menuItems = driver.findElements(By.cssSelector(".nav.navbar-nav li"));
+
+        // Asssert - Verify menuItems List
+        Assert.assertFalse(menuItems.isEmpty(), "Menu item List: Null");
+
+        // Act - Get menuItems List
         for (WebElement menuItem : menuItems) {
             WebElement link = menuItem.findElement(By.tagName("a"));
-
             String menuText = link.getText();
             String href = link.getAttribute("href");
 
-
+            // Assert
             Assert.assertNotNull(href, menuText + " The menu does not have an href attribute.");
             Assert.assertFalse(href.trim().isEmpty(), menuText + " Menu href value is empty.");
 
@@ -36,6 +40,7 @@ public class MenuTest extends BaseTest {
             );
         }
 
-        test.pass("Homepage menu structure validation passed successfully.");
+        logger.info("Homepage menu links validated successfully.Checked menu item count: " + menuItems.size());
+        test.pass("Homepage menu links validated successfully.");
     }
 }
