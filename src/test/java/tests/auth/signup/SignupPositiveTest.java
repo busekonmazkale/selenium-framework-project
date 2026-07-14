@@ -15,32 +15,39 @@ public class SignupPositiveTest extends BaseTest {
     private static final String SUCCESS_PAGE_URL = "/signup";
 
     @Test(groups = {"auth"})
-    public void userShouldSignup() throws InterruptedException {
-        // Initialize the test case for the Extent Report
+    public void userShouldSignup() {
+
         test = extent.createTest("Signup Test");
         test.info("Starting the signup process.");
-        logger.info("Registration started.");
+        logger.info("Positive signup flow started.");
 
         SignupPage signupPage = new SignupPage(driver);
 
+        // Act - Fill in the signup form and submit it
         driver.get("https://automationexercise.com/login");
-
         signupPage.enterName(TestDataFactory.generateFirstName());
         signupPage.enterEmail(TestDataFactory.generateEmail());
         SignupDetailsPage signupDetailsPage = signupPage.clickSignupButton();
-        Thread.sleep(3000);
-        boolean isSignupDetailsPageDisplayed =
-                signupDetailsPage.isSignupDetailsPageDisplayed();
-        logger.info(
-                "Signup details page displayed: {}",
-                isSignupDetailsPageDisplayed
-        );
+
+        // Assert - Verify that the Signup Details page is displayed
+        boolean isSignupDetailsPageDisplayed = signupDetailsPage.isSignupDetailsPageDisplayed();
+        logger.info("Signup details page displayed: {}", isSignupDetailsPageDisplayed);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         boolean isRedirected = wait.until(ExpectedConditions.urlContains(SUCCESS_PAGE_URL));
 
-        Assert.assertTrue(isRedirected, "Registration failed to redirect to the /signup page.");
-        logger.info("Registration completed successfully.");
-        test.pass("Signup successful.");
+        Assert.assertTrue(
+                isRedirected,
+                "Registration failed to redirect to the /signup page."
+        );
+
+        // Act - Select Mr Radio Button
+        signupDetailsPage.selectMrRadioButton();
+
+        // Assert - Verify Mr Radio Button
+        Assert.assertTrue(
+                signupDetailsPage.isMrRadioButtonSelected(),
+                "Mr. radio button was not selected."
+        );
     }
 }
