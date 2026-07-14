@@ -13,6 +13,7 @@ public class SignupNegativeTest extends BaseTest {
             dataProviderClass = InvalidSignupData.class
     )
 
+
     public void userShouldNotSignup(String scenarioName, String name, String email, InvalidSignupData.InvalidField invalidField) throws InterruptedException {
         SignupPage signupPage = new SignupPage(driver);
 

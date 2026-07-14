@@ -10,7 +10,7 @@ import utils.LinkUtility;
 import java.util.List;
 
 public class MenuTest extends BaseTest {
-    @Test
+    @Test(groups = {"smoke"})
     public void MenuItemsTest() {
         test = extent.createTest("Homepage Menu Test");
         test.info("Checking the homepage menu structure");

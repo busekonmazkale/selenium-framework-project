@@ -22,13 +22,13 @@ public class SignupPage {
     private By signupButton = By.cssSelector("[data-qa='signup-button']");
 
     public void enterName(String firstName) {
-        driver.findElement(nameInput).sendKeys(firstName);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(nameInput)).sendKeys(firstName);
     }
     public void enterEmail(String email) {
-        driver.findElement(emailInput).sendKeys(email);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(emailInput)).sendKeys(email);
     }
     public SignupDetailsPage clickSignupButton(){
-        driver.findElement(signupButton).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(signupButton)).click();
         return new SignupDetailsPage(driver);
     }
 

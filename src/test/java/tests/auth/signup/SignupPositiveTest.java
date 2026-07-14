@@ -29,8 +29,14 @@ public class SignupPositiveTest extends BaseTest {
         signupPage.enterEmail(TestDataFactory.generateEmail());
         SignupDetailsPage signupDetailsPage = signupPage.clickSignupButton();
 
-        // Assert - Verify that the Signup Details page is displayed
         boolean isSignupDetailsPageDisplayed = signupDetailsPage.isSignupDetailsPageDisplayed();
+
+        // Assert - Verify that the Signup Details page is displayed
+        Assert.assertTrue(
+                isSignupDetailsPageDisplayed,
+                "Signup details page is not displayed."
+        );
+
         logger.info("Signup details page displayed: {}", isSignupDetailsPageDisplayed);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
