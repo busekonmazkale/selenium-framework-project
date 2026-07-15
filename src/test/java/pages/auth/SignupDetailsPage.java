@@ -2,11 +2,16 @@ package pages.auth;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignupDetailsPage {
+    WebDriverWait wait;
     WebDriver driver;
     public SignupDetailsPage(WebDriver driver) {
         this.driver = driver;
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
     }
 
     // Arrange - Page Elements
@@ -16,15 +21,15 @@ public class SignupDetailsPage {
 
     // Act - Select Mr Radio Button
     public void selectMrRadioButton() {
-        driver.findElement(mrRadioButton).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(mrRadioButton)).click();
     }
 
     // Assert - Verify Singup Page Details Title is displayed
     public boolean isSignupDetailsPageDisplayed() {
-        return driver.findElement(accountInformationTitle).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(accountInformationTitle)).isDisplayed();
     }
     // Assert - Verify Mr Radio Button is selected
     public boolean isMrRadioButtonSelected() {
-        return driver.findElement(mrRadioButton).isSelected();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(mrRadioButton)).isSelected();
     }
 }
