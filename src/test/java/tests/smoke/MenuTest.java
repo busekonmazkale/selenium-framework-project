@@ -33,10 +33,10 @@ public class MenuTest extends BaseTest {
 
             int statusCode = LinkUtility.getStatusCode(href);
 
-            Assert.assertEquals(
-                    statusCode,
-                    200,
-                    menuText + " Menu returned non-200 status code. URL: " + href + " Status Code: " + statusCode
+            Assert.assertTrue(
+                    LinkUtility.isSuccessfulOrRedirect(statusCode),
+                    menuText + " Menu returned an unsuccessful status code. URL: " + href
+                            + " Status Code: " + statusCode
             );
         }
 

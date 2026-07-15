@@ -11,4 +11,9 @@
             <package name="tests.smoke"/>
         </packages>
     </test>
+    <test name="Auth Tests">
+        <packages>
+            <package name="tests.auth.signup"/>
+        </packages>
+    </test>
 </suite>

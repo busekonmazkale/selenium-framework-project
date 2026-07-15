@@ -9,10 +9,10 @@ import utils.dataprovider.InvalidSignupData;
 
 public class SignupNegativeTest extends BaseTest {
     @Test(
+            groups = {"auth"},
             dataProvider = "invalidSignupData",
             dataProviderClass = InvalidSignupData.class
     )
-
 
     public void userShouldNotSignup(String scenarioName, String name, String email, InvalidSignupData.InvalidField invalidField) throws InterruptedException {
         SignupPage signupPage = new SignupPage(driver);
