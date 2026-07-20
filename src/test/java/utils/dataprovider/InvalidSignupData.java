@@ -1,5 +1,4 @@
 package utils.dataprovider;
-
 import org.testng.annotations.DataProvider;
 
 public class InvalidSignupData {
@@ -12,16 +11,8 @@ public class InvalidSignupData {
         return new Object[][] {
                 {"Empty name", "", VALID_EMAIL, InvalidField.NAME},
                 {"Empty email", VALID_NAME, "", InvalidField.EMAIL},
-                {
-                        "Email format is invalid",
-                        VALID_NAME,
-                        INVALID_EMAIL,
-                        InvalidField.EMAIL
-                }
+                {"Email format is invalid", VALID_NAME, INVALID_EMAIL, InvalidField.EMAIL}
         };
     }
-    public enum InvalidField {
-        NAME,
-        EMAIL
-    }
+    public enum InvalidField {NAME, EMAIL}
 }

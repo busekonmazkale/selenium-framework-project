@@ -31,11 +31,13 @@ public class SignupPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(signupButton)).click();
         return new SignupDetailsPage(driver);
     }
-
     public String getNameValidationMessage() {
         return driver.findElement(nameInput).getDomProperty("validationMessage");
     }
     public String getEmailValidationMessage() {
         return driver.findElement(emailInput).getDomProperty("validationMessage");
+    }
+    public void submitSignupForm() {
+        wait.until(ExpectedConditions.elementToBeClickable(signupButton)).click();
     }
 }
