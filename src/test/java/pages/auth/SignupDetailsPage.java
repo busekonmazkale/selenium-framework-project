@@ -20,7 +20,6 @@ public class SignupDetailsPage {
     private By accountInformationTitle = By.cssSelector("div.login-form");
     private By mrRadioButton = By.id("id_gender1");
 
-
     // Act - Select Mr Radio Button
     public void selectMrRadioButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(mrRadioButton)).click();
@@ -30,6 +29,7 @@ public class SignupDetailsPage {
     public boolean isSignupDetailsPageDisplayed() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(accountInformationTitle)).isDisplayed();
     }
+    
     // Assert - Verify Mr Radio Button is selected
     public boolean isMrRadioButtonSelected() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(mrRadioButton)).isSelected();
