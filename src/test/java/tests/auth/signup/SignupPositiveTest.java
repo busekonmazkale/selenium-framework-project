@@ -1,6 +1,7 @@
 package tests.auth.signup;
 
 import base.BaseTest;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -15,7 +16,7 @@ public class SignupPositiveTest extends BaseTest {
     private static final String SUCCESS_PAGE_URL = "/signup";
 
     @Test(groups = {"auth"})
-    public void userShouldSignup() {
+    public void userShouldSignup() throws InterruptedException {
 
         test = extent.createTest("Signup Test");
         test.info("Starting the signup process.");
@@ -55,5 +56,10 @@ public class SignupPositiveTest extends BaseTest {
                 signupDetailsPage.isMrRadioButtonSelected(),
                 "Mr. radio button was not selected."
         );
+        Thread.sleep(3000);
+
+        signupDetailsPage.enterPassword("222");
+        signupDetailsPage.selectDateOfBirth("15", "May", "1996");
+        Thread.sleep(3000);
     }
 }
