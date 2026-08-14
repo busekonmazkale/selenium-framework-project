@@ -1,22 +1,15 @@
 package tests.auth.signup;
 
 import base.BaseTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.auth.SignupDetailsPage;
 import pages.auth.SignupPage;
 import utils.TestDataFactory;
 
-import java.time.Duration;
-
 public class SignupPositiveTest extends BaseTest {
-    private static final String SUCCESS_PAGE_URL = "/signup";
-
     @Test(groups = {"auth"})
-    public void userShouldSignup() throws InterruptedException {
+    public void userShouldSignup() {
 
         test = extent.createTest("Signup Test");
         test.info("Starting the signup process.");
@@ -24,42 +17,49 @@ public class SignupPositiveTest extends BaseTest {
 
         SignupPage signupPage = new SignupPage(driver);
 
-        // Act - Fill in the signup form and submit it
+        // Start registration with unique user data
         driver.get("https://automationexercise.com/login");
         signupPage.enterName(TestDataFactory.generateFirstName());
         signupPage.enterEmail(TestDataFactory.generateEmail());
         SignupDetailsPage signupDetailsPage = signupPage.clickSignupButton();
 
-        boolean isSignupDetailsPageDisplayed = signupDetailsPage.isSignupDetailsPageDisplayed();
-
-        // Assert - Verify that the Signup Details page is displayed
+        // Verify navigation to the account details form
         Assert.assertTrue(
-                isSignupDetailsPageDisplayed,
+                signupDetailsPage.isSignupDetailsPageDisplayed(),
                 "Signup details page is not displayed."
         );
 
-        logger.info("Signup details page displayed: {}", isSignupDetailsPageDisplayed);
+        logger.info("Signup details page is displayed.");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        boolean isRedirected = wait.until(ExpectedConditions.urlContains(SUCCESS_PAGE_URL));
-
-        Assert.assertTrue(
-                isRedirected,
-                "Registration failed to redirect to the /signup page."
-        );
-
-        // Act - Select Mr Radio Button
         signupDetailsPage.selectMrRadioButton();
 
-        // Assert - Verify Mr Radio Button
+        // Verify that the selected title is retained
         Assert.assertTrue(
                 signupDetailsPage.isMrRadioButtonSelected(),
-                "Mr. radio button was not selected."
+                "Mr. radio button is not selected."
         );
-        Thread.sleep(3000);
 
-        signupDetailsPage.enterPassword("222");
+        // Complete the required account and address details
+        signupDetailsPage.enterPassword("SecurePass123!");
         signupDetailsPage.selectDateOfBirth("15", "May", "1996");
-        Thread.sleep(3000);
+        signupDetailsPage.enterName("Buse");
+        signupDetailsPage.enterLastName("Kale");
+        signupDetailsPage.enterCompanyName("Lorem Ipsum Ltd.");
+        signupDetailsPage.enterAddress("123 Atatürk Street, Istanbul");
+        signupDetailsPage.selectCountry("India");
+        signupDetailsPage.enterState("Maharashtra");
+        signupDetailsPage.enterCity("Mumbai");
+        signupDetailsPage.enterZipcode("400001");
+        signupDetailsPage.enterMobileNumber("9876543210");
+
+        signupDetailsPage.clickCreateAccountButton();
+
+        // Verify successful account creation
+        Assert.assertTrue(
+                signupDetailsPage.isAccountCreatedMessageDisplayed(),
+                "Account created confirmation message is not displayed."
+        );
+
+        logger.info("Positive signup flow completed successfully.");
     }
 }
