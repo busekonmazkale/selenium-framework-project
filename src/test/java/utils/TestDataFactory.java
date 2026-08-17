@@ -20,4 +20,28 @@ public class TestDataFactory {
     public static String generateEmail(){
         return faker.internet().emailAddress();
     }
+
+    public static String generateCompanyName() {
+        return faker.company().name();
+    }
+
+    public static String generateAddress() {
+        return faker.address().streetAddress();
+    }
+
+    public static String generateState() {
+        return faker.address().state();
+    }
+
+    public static String generateCity() {
+        return faker.address().city();
+    }
+
+    public static String generateZipcode() {
+        return faker.address().zipCode();
+    }
+
+    public static String generateMobileNumber() {
+        return faker.number().digits(10);
+    }
 }

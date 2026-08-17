@@ -12,8 +12,8 @@ import java.util.List;
 public class MenuTest extends BaseTest {
     @Test(groups = {"smoke"})
     public void MenuItemsTest() {
-        test = extent.createTest("Homepage Menu Test");
-        test.info("Checking the homepage menu structure");
+        extentTest = extent.createTest("Homepage Menu Test");
+        extentTest.info("Checking the homepage menu structure");
 
         // Arrange
         List<WebElement> menuItems = driver.findElements(By.cssSelector(".nav.navbar-nav li"));
@@ -41,6 +41,6 @@ public class MenuTest extends BaseTest {
         }
 
         logger.info("Homepage menu links validated successfully.Checked menu item count: " + menuItems.size());
-        test.pass("Homepage menu links validated successfully.");
+        extentTest.pass("Homepage menu links validated successfully.");
     }
 }

@@ -19,7 +19,7 @@ import java.net.URL;
 
 public class BaseTest {
     protected static ExtentReports extent;
-    protected ExtentTest test;
+    protected ExtentTest extentTest;
 
     public static WebDriver driver;
     protected Logger logger = LoggerFactory.getLogger(getClass());

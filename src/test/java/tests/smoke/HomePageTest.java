@@ -15,8 +15,9 @@ import java.util.List;
 public class HomePageTest extends BaseTest {
     @Test(groups = {"smoke"})
     public void homePageTitleShouldBeCorrect() {
-        test = extent.createTest("Homepage Title Test");
-        test.info("Homepage title is being verified.");
+        // Initialize the test case for the Extent Report
+        extentTest = extent.createTest("Homepage Title Test");
+        extentTest.info("Homepage title is being verified.");
 
         String expectedTitle = ConfigReader.getProperty("title");
 
@@ -38,19 +39,23 @@ public class HomePageTest extends BaseTest {
         logger.info("Expected title: {}", expectedTitle);
         logger.info("Actual title: {}", actualTitle);
 
-        test.info("Expected title: " + expectedTitle);
-        test.info("Actual title: " + actualTitle);
+        extentTest.info("Expected title: " + expectedTitle);
+        extentTest.info("Actual title: " + actualTitle);
 
-        Assert.assertEquals(actualTitle, expectedTitle, "Homepage title does not match the configured title.");
+        Assert.assertEquals(
+                actualTitle,
+                expectedTitle,
+                "Homepage title does not match the configured title."
+        );
 
-        test.pass("Homepage title verified successfully.");
+        extentTest.pass("Homepage title verified successfully.");
     }
 
     @Test(groups = {"smoke"})
-    public void homePageProductsShouldBeVisible() {
+    public void homePageShouldDisplayAtLeastOneProduct() {
         // Initialize the test case for the Extent Report
-        test = extent.createTest("Homepage Load Test");
-        test.info("Loading the homepage products...");
+        extentTest = extent.createTest("Homepage Product Visibility Test");
+        extentTest.info("Loading the homepage products...");
 
         logger.info("Product visibility test on the homepage has started.");
 
@@ -59,13 +64,19 @@ public class HomePageTest extends BaseTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(productLocator));
 
-        List<WebElement> products = driver.findElements(By.cssSelector(".product-image-wrapper")).stream().filter(WebElement::isDisplayed).toList();
+        List<WebElement> products = driver.findElements(productLocator)
+                .stream()
+                .filter(WebElement::isDisplayed)
+                .toList();
 
         logger.info("Product count on the homepage: {}", products.size());
 
-        Assert.assertFalse(products.isEmpty(), "No products found on the homepage!");
+        Assert.assertFalse(
+                products.isEmpty(),
+                "No products found on the homepage!"
+        );
 
-        logger.info("At least one product is displayed on the homepage.");
-        test.pass("Homepage products verified successfully.");
+        logger.info("At least one product is displayed on the homepage." + products.size());
+        extentTest.pass("Homepage products verified successfully.");
     }
 }

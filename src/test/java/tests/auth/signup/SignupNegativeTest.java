@@ -18,8 +18,8 @@ public class SignupNegativeTest extends BaseTest {
             String email,
             InvalidSignupData.InvalidField invalidField
     ) {
-        test = extent.createTest("Negative Signup Test");
-        test.info("Starting the negative signup scenario: " + scenarioName);
+        extentTest = extent.createTest("Negative Signup Test");
+        extentTest.info("Starting the negative signup scenario: " + scenarioName);
         logger.info("Negative registration started.");
 
         SignupPage signupPage = new SignupPage(driver);

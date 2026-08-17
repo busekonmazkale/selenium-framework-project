@@ -36,6 +36,9 @@ public class SignupDetailsPage {
     private By enterMobileNumber = By.id("mobile_number");
     private By createAccountButton = By.cssSelector("[data-qa='create-account']");
     private By accountCreatedTitle = By.cssSelector("[data-qa='account-created']");
+    private By continueButton = By.cssSelector("[data-qa='continue-button']");
+    private By deleteAccountLink = By.cssSelector("a[href='/delete_account']");
+    private By accountDeletedTitle = By.cssSelector("[data-qa='account-deleted']");
 
     // Form actions
     public void selectMrRadioButton() {
@@ -107,7 +110,21 @@ public class SignupDetailsPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(accountCreatedTitle)).isDisplayed();
     }
 
+    public void deleteCreatedAccount() {
+        clickWithJavaScript(continueButton);
+        clickWithJavaScript(deleteAccountLink);
+    }
+
+    public boolean isAccountDeletedMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(accountDeletedTitle)).isDisplayed();
+    }
+
     // Helper methods
+    private void clickWithJavaScript(By locator) {
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+
     private void selectByVisibleText(By locator, String visibleText) {
         WebElement dropdown = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(locator)
