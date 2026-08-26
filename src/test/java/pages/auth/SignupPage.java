@@ -18,7 +18,7 @@ public class SignupPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    private By nameInput  = By.cssSelector("[data-qa='signup-name']");
+    private By nameInput  = By.cssSelector("[data-qa='signup-nameee']");
     private By emailInput  = By.cssSelector("[data-qa='signup-email']");
     private By signupButton = By.cssSelector("[data-qa='signup-button']");
 
