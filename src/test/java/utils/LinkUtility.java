@@ -1,7 +1,7 @@
 package utils;
 
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
 
 public class LinkUtility {
     private static final int MIN_SUCCESS_STATUS_CODE = 200;
@@ -12,7 +12,7 @@ public class LinkUtility {
         HttpURLConnection connection = null;
 
         try {
-            connection = (HttpURLConnection) new URL(href).openConnection();
+            connection = (HttpURLConnection) URI.create(href).toURL().openConnection();
             connection.setRequestMethod("GET");
             connection.setInstanceFollowRedirects(true);
             connection.setConnectTimeout(5000);

@@ -1,28 +1,32 @@
 package utils;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
-public class ConfigReader {
+public final class ConfigReader {
 
-    private static Properties properties;
+    private static final Properties properties = new Properties();
 
     static {
-        try {
-            String path = "src/main/resources/config.properties";
-
-            FileInputStream inputStream = new FileInputStream(path);
-
-            properties = new Properties();
-
+        try (InputStream inputStream = ConfigReader.class
+                .getClassLoader()
+                .getResourceAsStream("config.properties")) {
+            if (inputStream == null) {
+                throw new IllegalStateException(
+                        "config.properties classpath üzerinde bulunamadı."
+                );
+            }
             properties.load(inputStream);
-
-            inputStream.close();
-
         } catch (IOException e) {
-            throw new RuntimeException("Config dosyası okunamadı.");
+            throw new ExceptionInInitializerError(
+                    "config.properties okunamadı: " + e.getMessage()
+            );
         }
+    }
+
+    private ConfigReader() {
+        // Utility class; it should not be instantiated.
     }
 
     public static String getProperty(String key) {

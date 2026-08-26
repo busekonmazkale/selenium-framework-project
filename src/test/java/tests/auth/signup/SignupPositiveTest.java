@@ -22,7 +22,7 @@ public class SignupPositiveTest extends BaseTest {
         SignupPage signupPage = new SignupPage(driver);
 
         // Start registration with unique user data
-        driver.get("https://automationexercise.com/login");
+        driver.get(getApplicationUrl("login"));
         signupPage.enterName(TestDataFactory.generateFirstName());
         signupPage.enterEmail(TestDataFactory.generateEmail());
         signupDetailsPage = signupPage.clickSignupButton();

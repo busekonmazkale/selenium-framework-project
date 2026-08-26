@@ -1,12 +1,14 @@
 package utils;
 
-import org.apache.maven.surefire.shared.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 public class ScreenshotUtility {
 
@@ -15,11 +17,16 @@ public class ScreenshotUtility {
         File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
 
-        String path = System.getProperty("user.dir") + "/test-output/screenshots/" + name + ".png";
-        File destination = new File(path);
+        Path destination = Path.of(
+                System.getProperty("user.dir"),
+                "test-output",
+                "screenshots",
+                name + ".png"
+        );
 
-        FileUtils.copyFile(source, destination);
+        Files.createDirectories(destination.getParent());
+        Files.copy(source.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
 
-        return path;
+        return destination.toString();
     }
 }

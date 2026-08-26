@@ -41,8 +41,8 @@ git clone https://github.com/busekonmazkale/selenium-framework-project.git
 cd selenium-framework-project
 ```
 
-Start a standalone Selenium Chrome container. The framework currently connects
-to Selenium at `http://localhost:4444`:
+Start a standalone Selenium Chrome container. By default, the framework connects
+to the Grid URL configured by `grid.url` in `config.properties`:
 
 ```bash
 docker run --rm -d \
@@ -54,6 +54,13 @@ docker run --rm -d \
 
 Confirm that Selenium is ready by opening
 [http://localhost:4444/ui](http://localhost:4444/ui).
+
+To use a Grid running at another address, set `SELENIUM_GRID_URL` when running
+the tests. This environment variable overrides the value in `config.properties`:
+
+```bash
+SELENIUM_GRID_URL=http://192.168.1.53:4444 mvn test
+```
 
 ## Running Tests
 

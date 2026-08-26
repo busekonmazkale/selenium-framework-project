@@ -13,7 +13,8 @@ import utils.ConfigReader;
 import utils.ExtentManager;
 
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.time.Duration;
 
 
 @Listeners(TestListener.class)
@@ -24,6 +25,16 @@ public class BaseTest {
     public static WebDriver driver;
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
+    public ExtentTest getExtentTest() {
+        return extentTest;
+    }
+
+    protected String getApplicationUrl(String relativePath) {
+        String baseUrl = ConfigReader.getProperty("base.url");
+        URI baseUri = URI.create(baseUrl.endsWith("/") ? baseUrl : baseUrl + "/");
+        return baseUri.resolve(relativePath).toString();
+    }
+
 
     @BeforeSuite(alwaysRun = true)
     public void setupSuite() {
@@ -33,10 +44,19 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws MalformedURLException {
+        String gridUrl = System.getenv("SELENIUM_GRID_URL");
+        if (gridUrl == null || gridUrl.isBlank()) {
+            gridUrl = ConfigReader.getProperty("grid.url");
+        }
+
+        logger.info("Selenium Grid URL: {}", gridUrl);
+
         driver = new RemoteWebDriver(
-                new URL("http://localhost:4444"),
+                URI.create(gridUrl).toURL(),
                 new ChromeOptions()
         );
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+
         String url = ConfigReader.getProperty("base.url");
         logger.info("Config dosyasından URL alındı: {}", url);
         driver.manage().window().maximize();
@@ -52,9 +72,9 @@ public class BaseTest {
             logger.info("Browser closed.");
         }
     }
-    
 
-    @AfterSuite
+
+    @AfterSuite(alwaysRun = true)
     public void tearDownSuite() {
         if (extent != null) {
             extent.flush();

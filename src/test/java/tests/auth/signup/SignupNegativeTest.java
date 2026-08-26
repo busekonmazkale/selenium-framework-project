@@ -25,7 +25,7 @@ public class SignupNegativeTest extends BaseTest {
         SignupPage signupPage = new SignupPage(driver);
 
         // Submit the signup form with invalid test data
-        driver.get("https://automationexercise.com/login");
+        driver.get(getApplicationUrl("login"));
         logger.info("Signup page opened.");
         signupPage.enterName(name);
         signupPage.enterEmail(email);

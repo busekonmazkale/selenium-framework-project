@@ -13,8 +13,12 @@ import java.time.Duration;
 import java.util.List;
 
 public class HeaderMenuTest extends BaseTest {
-    @Test
+    @Test(groups = {"smoke"})
     public void headerMenuLinksShouldBeDisplayedAndOpenCorrectUrls() {
+        // Creates the Extent Reports entry for this test.
+        extentTest = extent.createTest("Header Menu Test");
+        extentTest.info("Starting header menu link validation.");
+
         // Creates a HeaderMenu instance using the active WebDriver.
         HeaderMenu headerMenu = new HeaderMenu(driver);
 
@@ -54,7 +58,7 @@ public class HeaderMenuTest extends BaseTest {
 
         // Defines the expected URLs in the same order as the header menu items.
         List<String> expectedUrls = List.of(
-                baseUrl + "#google_vignette",
+                baseUrl,
                 baseUrl + "products",
                 baseUrl + "view_cart",
                 baseUrl + "login",
@@ -85,5 +89,7 @@ public class HeaderMenuTest extends BaseTest {
                     "Incorrect URL opened for the '" + menuText + "' menu item."
             );
         }
+
+        extentTest.pass("Header menu links were validated successfully.");
     }
 }
