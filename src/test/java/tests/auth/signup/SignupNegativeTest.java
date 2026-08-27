@@ -24,7 +24,6 @@ public class SignupNegativeTest extends BaseTest {
 
         SignupPage signupPage = new SignupPage(driver);
 
-        // Submit the signup form with invalid test data
         driver.get(getApplicationUrl("login"));
         logger.info("Signup page opened.");
         signupPage.enterName(name);
@@ -34,7 +33,6 @@ public class SignupNegativeTest extends BaseTest {
         signupPage.submitSignupForm();
         String urlAfterSubmit = driver.getCurrentUrl();
 
-        // Read the validation message from the field under test
         String validationMessage = switch (invalidField) {
             case NAME -> signupPage.getNameValidationMessage();
             case EMAIL -> signupPage.getEmailValidationMessage();
@@ -45,7 +43,6 @@ public class SignupNegativeTest extends BaseTest {
         logger.info("URL after submit: {}", urlAfterSubmit);
         logger.info("Validation error message received. Field: {}, Message: {}", invalidField, validationMessage);
 
-        // Verify that registration is blocked by browser validation
         Assert.assertEquals(urlAfterSubmit, urlBeforeSubmit, "The signup form should not be submitted.");
         Assert.assertNotNull(validationMessage, scenarioName + ": validation message returned null.");
         Assert.assertFalse(validationMessage.isBlank(), "Validation error message should not be empty.");

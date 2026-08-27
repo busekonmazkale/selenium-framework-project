@@ -15,7 +15,6 @@ import java.util.List;
 public class HomePageTest extends BaseTest {
     @Test(groups = {"smoke"})
     public void homePageTitleShouldBeCorrect() {
-        // Initialize the test case for the Extent Report
         extentTest = extent.createTest("Homepage Title Test");
         extentTest.info("Homepage title is being verified.");
 
@@ -53,7 +52,6 @@ public class HomePageTest extends BaseTest {
 
     @Test(groups = {"smoke"})
     public void homePageShouldDisplayAtLeastOneProduct() {
-        // Initialize the test case for the Extent Report
         extentTest = extent.createTest("Homepage Product Visibility Test");
         extentTest.info("Loading the homepage products...");
 

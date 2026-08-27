@@ -17,8 +17,7 @@ public class HeaderMenu {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // Arrange - Page Elements
-    private By menuLinks = By.cssSelector(".shop-menu .nav.navbar-nav li a");
+    private final By menuLinks = By.cssSelector(".shop-menu .nav.navbar-nav li a");
 
     public List<WebElement> getMenuLinks() {
         return wait.until(

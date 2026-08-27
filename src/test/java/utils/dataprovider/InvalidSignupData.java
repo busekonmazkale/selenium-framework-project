@@ -8,7 +8,6 @@ public final class InvalidSignupData {
     private static final String MALFORMED_EMAIL = "buse.kale.example.com";
 
     private InvalidSignupData() {
-        // Utility class; it should not be instantiated.
     }
 
     @DataProvider(name = "invalidSignupData")

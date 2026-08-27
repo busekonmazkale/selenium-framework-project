@@ -26,7 +26,6 @@ public final class ConfigReader {
     }
 
     private ConfigReader() {
-        // Utility class; it should not be instantiated.
     }
 
     public static String getProperty(String key) {

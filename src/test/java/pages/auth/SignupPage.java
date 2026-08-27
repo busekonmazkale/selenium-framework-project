@@ -4,7 +4,6 @@ package pages.auth;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -18,9 +17,9 @@ public class SignupPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    private By nameInput  = By.cssSelector("[data-qa='signup-name']");
-    private By emailInput  = By.cssSelector("[data-qa='signup-email']");
-    private By signupButton = By.cssSelector("[data-qa='signup-button']");
+    private final By nameInput  = By.cssSelector("[data-qa='signup-name']");
+    private final By emailInput  = By.cssSelector("[data-qa='signup-email']");
+    private final By signupButton = By.cssSelector("[data-qa='signup-button']");
 
     public void enterName(String firstName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(nameInput)).sendKeys(firstName);

@@ -21,13 +21,11 @@ public class SignupPositiveTest extends BaseTest {
 
         SignupPage signupPage = new SignupPage(driver);
 
-        // Start registration with unique user data
         driver.get(getApplicationUrl("login"));
         signupPage.enterName(TestDataFactory.generateFirstName());
         signupPage.enterEmail(TestDataFactory.generateEmail());
         signupDetailsPage = signupPage.clickSignupButton();
 
-        // Verify navigation to the account details form
         Assert.assertTrue(
                 signupDetailsPage.isSignupDetailsPageDisplayed(),
                 "Signup details page is not displayed."
@@ -37,13 +35,11 @@ public class SignupPositiveTest extends BaseTest {
 
         signupDetailsPage.selectMrRadioButton();
 
-        // Verify that the selected title is retained
         Assert.assertTrue(
                 signupDetailsPage.isMrRadioButtonSelected(),
                 "Mr. radio button is not selected."
         );
 
-        // Complete the required account and address details
         signupDetailsPage.enterPassword(TestDataFactory.generatePassword());
         signupDetailsPage.selectDateOfBirth("15", "May", "1996");
         signupDetailsPage.enterName(TestDataFactory.generateFirstName());
@@ -59,7 +55,6 @@ public class SignupPositiveTest extends BaseTest {
         signupDetailsPage.clickCreateAccountButton();
         accountCreationSubmitted = true;
 
-        // Verify successful account creation
         Assert.assertTrue(
                 signupDetailsPage.isAccountCreatedMessageDisplayed(),
                 "Account created confirmation message is not displayed."

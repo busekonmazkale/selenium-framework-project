@@ -18,27 +18,26 @@ public class SignupDetailsPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // Arrange - Page Elements
-    private By accountInformationTitle = By.cssSelector("div.login-form");
-    private By mrRadioButton = By.id("id_gender1");
-    private By enterPassword = By.id("password");
-    private By daySelect = By.id("days");
-    private By monthSelect = By.id("months");
-    private By yearSelect = By.id("years");
-    private By enterName = By.id("first_name");
-    private By enterLastName = By.id("last_name");
-    private By enterCompanyName = By.id("company");
-    private By enterAddress = By.id("address1");
-    private By countrySelect = By.id("country");
-    private By enterState = By.id("state");
-    private By enterCity = By.id("city");
-    private By enterZipcode = By.id("zipcode");
-    private By enterMobileNumber = By.id("mobile_number");
-    private By createAccountButton = By.cssSelector("[data-qa='create-account']");
-    private By accountCreatedTitle = By.cssSelector("[data-qa='account-created']");
-    private By continueButton = By.cssSelector("[data-qa='continue-button']");
-    private By deleteAccountLink = By.cssSelector("a[href='/delete_account']");
-    private By accountDeletedTitle = By.cssSelector("[data-qa='account-deleted']");
+    private final By accountInformationTitle = By.cssSelector("div.login-form");
+    private final By mrRadioButton = By.id("id_gender1");
+    private final By enterPassword = By.id("password");
+    private final By daySelect = By.id("days");
+    private final By monthSelect = By.id("months");
+    private final By yearSelect = By.id("years");
+    private final By enterName = By.id("first_name");
+    private final By enterLastName = By.id("last_name");
+    private final By enterCompanyName = By.id("company");
+    private final By enterAddress = By.id("address1");
+    private final By countrySelect = By.id("country");
+    private final By enterState = By.id("state");
+    private final By enterCity = By.id("city");
+    private final By enterZipcode = By.id("zipcode");
+    private final By enterMobileNumber = By.id("mobile_number");
+    private final By createAccountButton = By.cssSelector("[data-qa='create-account']");
+    private final By accountCreatedTitle = By.cssSelector("[data-qa='account-created']");
+    private final By continueButton = By.cssSelector("[data-qa='continue-button']");
+    private final By deleteAccountLink = By.cssSelector("a[href='/delete_account']");
+    private final By accountDeletedTitle = By.cssSelector("[data-qa='account-deleted']");
 
     // Form actions
     public void selectMrRadioButton() {
