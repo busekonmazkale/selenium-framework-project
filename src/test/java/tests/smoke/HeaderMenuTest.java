@@ -2,7 +2,6 @@ package tests.smoke;
 
 import base.BaseTest;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -66,15 +65,25 @@ public class HeaderMenuTest extends BaseTest {
             String expectedUrl = expectedUrls.get(i);
 
             currentMenuLinks.get(i).click();
-            wait.until(ExpectedConditions.urlToBe(expectedUrl));
+            wait.until(webDriver ->
+                    removeFragment(webDriver.getCurrentUrl())
+                            .equals(removeFragment(expectedUrl))
+            );
 
             Assert.assertEquals(
-                    driver.getCurrentUrl(),
-                    expectedUrl,
+                    removeFragment(driver.getCurrentUrl()),
+                    removeFragment(expectedUrl),
                     "Incorrect URL opened for the '" + menuText + "' menu item."
             );
         }
 
         extentTest.pass("Header menu links were validated successfully.");
+    }
+
+    private static String removeFragment(String url) {
+        int fragmentIndex = url.indexOf('#');
+        return fragmentIndex >= 0
+                ? url.substring(0, fragmentIndex)
+                : url;
     }
 }

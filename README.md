@@ -3,6 +3,11 @@
 This repository contains a UI test automation framework for
 [Automation Exercise](https://automationexercise.com/).
 
+> [!IMPORTANT]
+> The tests require a running Selenium Grid. This project does not start the
+> Grid automatically, so start it manually by following the [Setup](#setup)
+> instructions before running any `mvn test` command.
+
 ## Test Coverage
 
 The current test suite includes:
